@@ -1,41 +1,118 @@
-# Cubrí Seguros · Flujo de contratación digital (Seguro de Celular)
 
-TP Diseño UXUI 2026 · HTML5 + Tailwind CSS v4 (CDN) + Basecoat UI + JavaScript vanilla.
+# Cubrí Seguros
 
-- **Sitio publicado:** https://sofiferuader1.github.io/TP5-Cubri-Seguros/
+## Flujo de contratación digital de seguros
 
-## Cómo correrlo
-Los módulos ES y `fetch` no funcionan con doble click (`file://`). Usá un servidor local:
+Trabajo Práctico N.º 5 — Diseño UX/UI 2026  
+Licenciatura en Sistemas de Información
+
+Aplicación web responsive que simula el proceso de contratación de un seguro de celular, desde la cotización hasta la emisión de una póliza.
+
+### Sitio publicado
+
+https://sofiferuader1.github.io/TP5-Cubri-Seguros/
+
+## Tecnologías utilizadas
+
+- HTML5
+- Tailwind CSS v4 (CDN)
+- Basecoat UI
+- JavaScript vanilla (módulos ES)
+- JSON para los planes disponibles
+
+## Funcionalidades
+
+- Catálogo de productos.
+- Cotización de seguro de celular.
+- Cálculo automático de cuotas.
+- Selección entre tres planes: Básico, Plus y Premium.
+- Validación de datos personales.
+- Simulación de pagos aprobados y rechazados.
+- Generación de número de póliza.
+- Navegación entre pasos conservando los datos.
+- Diseño responsive para celular y computadora.
+
+## Cómo ejecutar el proyecto
+
+Abrir la carpeta del proyecto en Visual Studio Code y utilizar la extensión Live Server.
+
+También puede ejecutarse mediante:
 
 ```bash
-npx serve .      # o la extensión Live Server de VS Code
+npx serve .
 ```
 
-## Estructura
-`index.html` (7 pantallas como `<section data-paso>`), `css/tokens.css`, `data/planes.json`,
-`js/` → `app.js` (eventos), `estado.js` (objeto `solicitud`), `render.js`, `validaciones.js` (funciones puras),
-`cotizador.js` (`calcularCuota`), `pago.js` (`simularPago`, `generarPoliza`).
+Se requiere un servidor local porque los módulos ES y `fetch` no funcionan correctamente al abrir el archivo mediante `file://`.
 
-## Decisiones
-- Un único objeto `solicitud`; cada evento lo modifica y llama a `render()`. Los inputs se rellenan desde el estado, por eso "Volver" no pierde datos.
-- El resumen se genera una sola vez (`renderResumen()`): barra fija en mobile, card lateral en `lg:`.
-- Errores en línea al salir del campo (`blur`), con `aria-invalid` y `role="alert"`; foco al primer error al intentar avanzar.
-- Los botones deshabilitados muestran qué falta completar.
-- Pago: botón "Procesando…" deshabilitado 1,5 s (sin doble click). Tarjetas: `4111 1111 1111 1111` aprobada, `4000 0000 0000 0002` rechazada.
+## Estructura del proyecto
 
-## Casos de prueba (sección 5.1)
-| Valor | Antigüedad | Básico | Plus | Premium |
+```text
+index.html
+css/
+  tokens.css
+data/
+  planes.json
+js/
+  app.js
+  cotizador.js
+  estado.js
+  pago.js
+  render.js
+  validaciones.js
+capturas/
+  mobile/
+  desktop/
+README.md
+```
+
+## Decisiones de implementación
+
+Se utiliza un único objeto `solicitud` para almacenar el estado de la contratación.
+
+La navegación permite retroceder sin perder los datos ingresados.
+
+El resumen de contratación se genera desde el estado y se presenta como una barra inferior en dispositivos móviles y una tarjeta lateral en escritorio.
+
+Las validaciones muestran mensajes de error al abandonar los campos incorrectos.
+
+Los botones de continuación permanecen deshabilitados hasta completar correctamente los campos obligatorios.
+
+El pago se simula con una espera de 1,5 segundos y se evita el doble procesamiento.
+
+## Casos de prueba
+
+| Valor del equipo | Antigüedad | Básico | Plus | Premium |
 |---|---|---|---|---|
-| $600.000 | menos de 1 año | $2.000 | $3.000 | $4.500 |
+| $600.000 | Menos de 1 año | $2.000 | $3.000 | $4.500 |
 | $600.000 | 1 a 2 años | $2.200 | $3.300 | $4.950 |
-| $1.200.000 | más de 2 años | $5.000 | $7.500 | $11.250 |
+| $1.200.000 | Más de 2 años | $5.000 | $7.500 | $11.250 |
 
-## Bonus
-- Máscaras de input: tarjeta en grupos de 4 y vencimiento con barra automática.
+## Simulación de pago
 
-## Capturas
+Tarjetas de prueba:
 
-Las siguientes capturas muestran las siete pantallas del flujo de contratación en sus versiones mobile (390 px) y desktop (1440 px).
+- `4111 1111 1111 1111`: pago aprobado.
+- `4000 0000 0000 0002`: pago rechazado.
+
+No se procesan pagos reales ni se envían correos electrónicos.
+
+El número de póliza se genera con el formato `POL-AAAA-NNNNNN`.
+
+El botón **Imprimir / Guardar póliza** utiliza la función de impresión del navegador y permite guardar el documento como PDF.
+
+## Funcionalidades adicionales
+
+- Máscaras de entrada para número de tarjeta y vencimiento.
+- Conservación de datos al retroceder entre pantallas.
+- Mensajes de error y estados de carga.
+- Resumen adaptable a dispositivos móviles y escritorio.
+
+## Capturas de pantalla
+
+Se incluyen las siete pantallas del flujo en dos resoluciones:
+
+- Mobile: 390 px.
+- Desktop: 1440 px.
 
 | Pantalla | Mobile | Desktop |
 |---|---|---|
@@ -47,8 +124,6 @@ Las siguientes capturas muestran las siete pantallas del flujo de contratación 
 | Éxito | ![Éxito mobile](capturas/mobile/06-exito.png) | ![Éxito desktop](capturas/desktop/06-exito.png) |
 | Error de pago | ![Error mobile](capturas/mobile/07-error.png) | ![Error desktop](capturas/desktop/07-error.png) |
 
-## Aclaraciones sobre la simulación
-- El botón **Imprimir / Guardar póliza** usa la opción de impresión del navegador (`window.print()`); desde allí se puede elegir **Guardar como PDF**.
-- El mensaje de envío de póliza es parte de la simulación: **no se envía ningún email real**.
-- No ingresar datos de tarjetas reales. Usar únicamente los números de prueba de la consigna.
+## Repositorio
 
+https://github.com/Sofiferuader1/TP5-Cubri-Seguros

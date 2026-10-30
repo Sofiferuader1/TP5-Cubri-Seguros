@@ -2,7 +2,7 @@
 
 TP Diseño UXUI 2026 · HTML5 + Tailwind CSS v4 (CDN) + Basecoat UI + JavaScript vanilla.
 
-- **Sitio publicado:** _pendiente: agregar URL de GitHub Pages, Netlify o Firebase Hosting_
+- **Sitio publicado:** https://sofiferuader1.github.io/TP5-Cubri-Seguros/
 
 ## Cómo correrlo
 Los módulos ES y `fetch` no funcionan con doble click (`file://`). Usá un servidor local:
@@ -33,15 +33,22 @@ npx serve .      # o la extensión Live Server de VS Code
 ## Bonus
 - Máscaras de input: tarjeta en grupos de 4 y vencimiento con barra automática.
 
-## Capturas (pendientes de agregar)
-Incluir capturas de las 7 pantallas en **mobile (390 px)** y **desktop (1440 px)**. No se incluyen imágenes ficticias: deben capturarse con el proyecto ejecutándose en el navegador.
+## Capturas
+
+Las siguientes capturas muestran las siete pantallas del flujo de contratación en sus versiones mobile (390 px) y desktop (1440 px).
+
+| Pantalla | Mobile | Desktop |
+|---|---|---|
+| Inicio | ![Inicio mobile](capturas/mobile/01-inicio.png) | ![Inicio desktop](capturas/desktop/01-inicio.png) |
+| Cotización | ![Cotización mobile](capturas/mobile/02-cotizar.png) | ![Cotización desktop](capturas/desktop/02-cotizar.png) |
+| Planes | ![Planes mobile](capturas/mobile/03-planes.png) | ![Planes desktop](capturas/desktop/03-planes.png) |
+| Datos personales | ![Datos mobile](capturas/mobile/04-datos.png) | ![Datos desktop](capturas/desktop/04-datos.png) |
+| Pago | ![Pago mobile](capturas/mobile/05-pago.png) | ![Pago desktop](capturas/desktop/05-pago.png) |
+| Éxito | ![Éxito mobile](capturas/mobile/06-exito.png) | ![Éxito desktop](capturas/desktop/06-exito.png) |
+| Error de pago | ![Error mobile](capturas/mobile/07-error.png) | ![Error desktop](capturas/desktop/07-error.png) |
 
 ## Aclaraciones sobre la simulación
 - El botón **Imprimir / Guardar póliza** usa la opción de impresión del navegador (`window.print()`); desde allí se puede elegir **Guardar como PDF**.
 - El mensaje de envío de póliza es parte de la simulación: **no se envía ningún email real**.
 - No ingresar datos de tarjetas reales. Usar únicamente los números de prueba de la consigna.
 
-## Pendientes antes de entregar
-- Publicar el sitio y reemplazar la URL pendiente de arriba.
-- Incorporar las capturas mobile y desktop.
-- Verificar los commits por hito en el repositorio de GitHub.

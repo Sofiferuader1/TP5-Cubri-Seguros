@@ -1,0 +1,5 @@
+:root{--primary:#4F46E5;--primary-foreground:#FFFFFF;--radius:.75rem;--bg:#F5F7FB;--error:#DC2626}
+body{background:var(--bg);font-family:Inter,system-ui,sans-serif;color:#0F172A}
+[hidden]{display:none!important}
+.field[data-invalid] input,.field[data-invalid] select{border-color:var(--error)}
+.field [data-err]{color:var(--error);font-size:12px}

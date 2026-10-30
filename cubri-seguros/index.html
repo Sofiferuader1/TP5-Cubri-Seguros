@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cubrí Seguros</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <!-- Basecoat UI (estilos de componentes) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/basecoat-css@1.1.0/dist/basecoat.cdn.min.css">
+  <!-- Tailwind v4 en el navegador (utilidades) -->
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <link rel="stylesheet" href="css/tokens.css">
+  <script type="module" src="js/app.js"></script>
+</head>
+<body class="min-h-screen">
+<header class="border-b bg-white"><div class="mx-auto flex max-w-6xl items-center gap-2 px-5 py-3 lg:px-10">
+  <span class="grid size-7 place-items-center rounded-lg bg-indigo-600 text-sm font-extrabold text-white">C</span>
+  <span class="font-extrabold">Cubrí</span></div></header>
+
+<main>
+<!-- 01 · Inicio / Catálogo -->
+<section data-paso="0" class="mx-auto grid max-w-6xl gap-8 p-5 lg:grid-cols-2 lg:items-center lg:p-12">
+  <div>
+    <h1 class="text-3xl font-extrabold text-slate-900 lg:text-5xl">Protegé lo que más usás en menos de 3 minutos</h1>
+    <p class="mt-3 text-[15px] text-slate-500">Elegí qué asegurar. Cotizá al instante y contratá 100% online.</p>
+    <button type="button" class="btn mt-6 w-full lg:w-auto" data-ir="1">Cotizar seguro de Celular</button>
+  </div>
+  <div class="grid grid-cols-2 gap-3">
+    <div class="rounded-xl border-2 border-indigo-600 bg-indigo-50 p-4"><div class="text-2xl">📱</div><h3 class="font-bold">Celular</h3><p class="text-xs text-slate-500">Robo, rotura y pérdida</p></div>
+    <div class="rounded-xl border bg-white p-4 opacity-60" aria-disabled="true"><div class="text-2xl">🏠</div><h3 class="font-bold">Hogar</h3><span class="badge" data-variant="secondary">Próximamente</span></div>
+    <div class="rounded-xl border bg-white p-4 opacity-60" aria-disabled="true"><div class="text-2xl">🚲</div><h3 class="font-bold">Bicicleta</h3><span class="badge" data-variant="secondary">Próximamente</span></div>
+    <div class="rounded-xl border bg-white p-4 opacity-60" aria-disabled="true"><div class="text-2xl">✈️</div><h3 class="font-bold">Viaje</h3><span class="badge" data-variant="secondary">Próximamente</span></div>
+  </div>
+</section>
+
+<!-- Checkout (pasos 1 a 4) -->
+<div id="checkout" hidden class="mx-auto max-w-6xl p-5 pb-64 lg:p-10 lg:pb-10">
+  <ol id="stepper" class="mb-6 flex items-center" aria-label="Pasos de la contratación"></ol>
+  <div class="grid items-start gap-8 lg:grid-cols-[1fr_380px]">
+    <form novalidate class="card">
+
+      <!-- 02 · Cotizar -->
+      <section data-paso="1" hidden class="grid gap-4">
+        <h2 class="text-2xl font-extrabold">Contanos sobre tu celular</h2>
+        <div role="group" class="field"><label for="marca">Marca</label>
+          <select id="marca" data-f="equipo.marca"><option value="">Elegí una marca</option><option>Samsung</option><option>Apple</option><option>Motorola</option><option>Xiaomi</option><option>Otra</option></select>
+          <p data-err role="alert" hidden></p></div>
+        <div role="group" class="field"><label for="modelo">Modelo</label><input id="modelo" data-f="equipo.modelo" placeholder="Galaxy A55"><p data-err role="alert" hidden></p></div>
+        <div role="group" class="field"><label for="valor">Valor del equipo ($)</label><input id="valor" inputmode="numeric" data-f="equipo.valor" placeholder="600.000"><p class="text-xs text-slate-500">Entre $100.000 y $2.500.000</p><p data-err role="alert" hidden></p></div>
+        <div role="group" class="field"><label>Antigüedad</label>
+          <div class="flex flex-wrap gap-2">
+            <label class="cursor-pointer"><input type="radio" name="antiguedad" value="menos-1" data-f="equipo.antiguedad" class="peer sr-only"><span class="block rounded-full border px-4 py-2 text-sm peer-checked:border-indigo-600 peer-checked:bg-indigo-50 peer-checked:text-indigo-800 peer-focus-visible:ring-2">Menos de 1 año</span></label>
+            <label class="cursor-pointer"><input type="radio" name="antiguedad" value="1-2" data-f="equipo.antiguedad" class="peer sr-only"><span class="block rounded-full border px-4 py-2 text-sm peer-checked:border-indigo-600 peer-checked:bg-indigo-50 peer-checked:text-indigo-800 peer-focus-visible:ring-2">1 a 2 años</span></label>
+            <label class="cursor-pointer"><input type="radio" name="antiguedad" value="mas-2" data-f="equipo.antiguedad" class="peer sr-only"><span class="block rounded-full border px-4 py-2 text-sm peer-checked:border-indigo-600 peer-checked:bg-indigo-50 peer-checked:text-indigo-800 peer-focus-visible:ring-2">Más de 2 años</span></label>
+          </div><p data-err role="alert" hidden></p></div>
+        <p id="falla" role="alert" hidden class="text-sm text-red-600">No se pudieron cargar los planes. Abrí el sitio con un servidor (Live Server o npx serve), no con doble click.</p>
+        <p data-ayuda="1" class="text-xs text-slate-500" hidden></p>
+        <div class="flex flex-col gap-3 lg:flex-row lg:justify-between">
+          <button type="button" class="btn w-full lg:w-auto" data-variant="outline" data-ir="0">Volver</button>
+          <button type="button" class="btn w-full lg:w-auto" data-accion="ver-planes" data-requiere="1" disabled>Ver planes</button></div>
+      </section>
+
+      <!-- 03 · Elegir plan -->
+      <section data-paso="2" hidden class="grid gap-4">
+        <h2 class="text-2xl font-extrabold">Elegí tu plan</h2>
+        <div id="planes" class="grid gap-3 lg:grid-cols-3"></div>
+        <div class="flex flex-col gap-3 lg:flex-row lg:justify-between">
+          <button type="button" class="btn w-full lg:w-auto" data-variant="outline" data-ir="1">Volver</button>
+          <button type="button" class="btn w-full lg:w-auto" data-accion="a-datos">Continuar</button></div>
+      </section>
+
+      <!-- 04 · Datos personales -->
+      <section data-paso="3" hidden class="grid gap-4">
+        <h2 class="text-2xl font-extrabold">Tus datos</h2>
+        <div class="grid gap-4 lg:grid-cols-2">
+          <div role="group" class="field"><label for="nombre">Nombre</label><input id="nombre" data-f="titular.nombre" autocomplete="given-name"><p data-err role="alert" hidden></p></div>
+          <div role="group" class="field"><label for="apellido">Apellido</label><input id="apellido" data-f="titular.apellido" autocomplete="family-name"><p data-err role="alert" hidden></p></div>
+          <div role="group" class="field"><label for="dni">DNI</label><input id="dni" inputmode="numeric" data-f="titular.dni"><p data-err role="alert" hidden></p></div>
+          <div role="group" class="field"><label for="nacimiento">Fecha de nacimiento</label><input id="nacimiento" type="date" data-f="titular.nacimiento"><p data-err role="alert" hidden></p></div>
+          <div role="group" class="field"><label for="email">Email</label><input id="email" type="email" data-f="titular.email" autocomplete="email"><p data-err role="alert" hidden></p></div>
+          <div role="group" class="field"><label for="celular">Celular</label><input id="celular" type="tel" data-f="titular.celular" placeholder="11 5555-1234"><p data-err role="alert" hidden></p></div>
+        </div>
+        <div role="group" class="field"><label class="flex items-start gap-2"><input id="terminos" type="checkbox" data-f="titular.terminos"> Acepto los términos y condiciones y la política de privacidad</label><p data-err role="alert" hidden></p></div>
+        <p data-ayuda="3" class="text-xs text-slate-500" hidden></p>
+        <div class="flex flex-col gap-3 lg:flex-row lg:justify-between">
+          <button type="button" class="btn w-full lg:w-auto" data-variant="outline" data-ir="2">Volver</button>
+          <button type="button" class="btn w-full lg:w-auto" data-accion="a-pago" data-requiere="3" disabled>Continuar al pago</button></div>
+      </section>
+
+      <!-- 05 · Pago -->
+      <section data-paso="4" hidden class="grid gap-4">
+        <h2 class="text-2xl font-extrabold">Pago</h2>
+        <div role="group" class="field"><label>Medio de pago</label>
+          <div class="flex gap-2">
+            <label class="cursor-pointer"><input type="radio" name="metodo" value="credito" data-f="pago.metodo" class="peer sr-only"><span class="block rounded-full border px-4 py-2 text-sm peer-checked:border-indigo-600 peer-checked:bg-indigo-50 peer-checked:text-indigo-800 peer-focus-visible:ring-2">Tarjeta de crédito</span></label>
+            <label class="cursor-pointer"><input type="radio" name="metodo" value="debito" data-f="pago.metodo" class="peer sr-only"><span class="block rounded-full border px-4 py-2 text-sm peer-checked:border-indigo-600 peer-checked:bg-indigo-50 peer-checked:text-indigo-800 peer-focus-visible:ring-2">Tarjeta de débito</span></label>
+          </div></div>
+        <div role="group" class="field"><label for="tarjeta">Número de tarjeta</label><input id="tarjeta" inputmode="numeric" autocomplete="off" data-f="pago.tarjeta" placeholder="4111 1111 1111 1111"><p data-err role="alert" hidden></p></div>
+        <div class="grid grid-cols-2 gap-4">
+          <div role="group" class="field"><label for="venc">Vencimiento</label><input id="venc" inputmode="numeric" data-f="pago.vencimiento" placeholder="MM/AA"><p data-err role="alert" hidden></p></div>
+          <div role="group" class="field"><label for="cvv">CVV</label><input id="cvv" inputmode="numeric" autocomplete="off" data-f="pago.cvv" placeholder="123"><p data-err role="alert" hidden></p></div>
+        </div>
+        <div role="group" class="field"><label for="titular-pago">Titular de la tarjeta</label><input id="titular-pago" data-f="pago.titular"><p data-err role="alert" hidden></p></div>
+        <div class="alert"><h2>Simulación</h2><section>No se procesan pagos reales. Usá solo 4111 1111 1111 1111 (aprobada) o 4000 0000 0000 0002 (rechazada).</section></div>
+        <div class="flex flex-col gap-3 lg:flex-row lg:justify-between">
+          <button type="button" class="btn w-full lg:w-auto" data-variant="outline" data-ir="3">Volver</button>
+          <button type="button" class="btn w-full lg:w-auto" data-accion="pagar">Pagar y contratar</button></div>
+      </section>
+    </form>
+
+    <!-- Resumen: se genera una sola vez desde el estado (renderResumen) -->
+    <aside id="resumen" hidden aria-label="Resumen de la contratación" class="fixed inset-x-0 bottom-0 z-10 border-t bg-white p-4 shadow-lg lg:static lg:rounded-xl lg:border lg:p-5 lg:shadow-none"></aside>
+  </div>
+</div>
+
+<!-- 06 · Éxito -->
+<section data-paso="5" hidden class="mx-auto max-w-md p-5">
+  <div class="card text-center"><section class="grid gap-4">
+    <div class="mx-auto grid size-14 place-items-center rounded-full bg-emerald-50 text-2xl text-emerald-600">✓</div>
+    <h2 class="text-2xl font-extrabold">¡Listo, <span data-bind="titular.nombre"></span>!<br>Tu celular ya está protegido</h2>
+    <p class="text-sm text-slate-500">Te enviamos la póliza a <b data-bind="titular.email"></b></p>
+    <div class="rounded-lg bg-indigo-50 p-3 font-bold text-indigo-800" data-bind="poliza"></div>
+    <dl class="grid gap-2 text-sm">
+      <div class="flex justify-between"><dt class="text-slate-500">Plan</dt><dd class="font-semibold" data-bind="plan.nombre"></dd></div>
+      <div class="flex justify-between"><dt class="text-slate-500">Equipo</dt><dd class="font-semibold" data-bind="equipo.desc"></dd></div>
+      <div class="flex justify-between"><dt class="text-slate-500">Cuota mensual</dt><dd class="font-semibold" data-bind="total"></dd></div>
+    </dl>
+    <button type="button" class="btn w-full" data-accion="imprimir">Imprimir / Guardar póliza</button>
+    <button type="button" class="btn w-full" data-variant="ghost" data-accion="inicio">Volver al inicio</button>
+  </section></div>
+</section>
+
+<!-- 07 · Error de pago -->
+<section data-paso="6" hidden class="mx-auto max-w-md p-5">
+  <div class="card text-center"><section class="grid gap-4">
+    <div class="mx-auto grid size-14 place-items-center rounded-full bg-red-50 text-2xl text-red-600">✕</div>
+    <h2 class="text-2xl font-extrabold">No pudimos procesar el pago</h2>
+    <p class="text-sm text-slate-500">La tarjeta fue rechazada. Revisá los datos o probá con otro medio de pago. Tus datos quedaron guardados.</p>
+    <div class="alert" data-variant="destructive"><h2>Motivo</h2><section data-bind="errorPago"></section></div>
+    <button type="button" class="btn w-full" data-ir="4">Reintentar pago</button>
+    <button type="button" class="btn w-full" data-variant="outline" data-accion="cambiar-medio">Cambiar medio de pago</button>
+  </section></div>
+</section>
+</main>
+</body>
+</html>
